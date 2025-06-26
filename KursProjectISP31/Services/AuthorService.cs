@@ -45,5 +45,12 @@ namespace KursProjectISP31.Services
             }
             return true;
         }
+        public override List<Author> Search(string str)
+        {
+            using (KursovayaContext db = new KursovayaContext())
+            {
+               return db.Authors.Where(p => p.Surname!.StartsWith(str)).ToList();
+            }
+        }
     }
 }

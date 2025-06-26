@@ -5,17 +5,32 @@ using KursProjectISP31.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace KursProjectISP31.ViewModel
 {
     public class AuthorViewModel:ViewModelBase
     {
-        public ObservableCollection<Author> Authors { get; set; }
-        public AuthorService authorService;
+        private AuthorService authorService;
+
+        private ObservableCollection<Author> authors;
+        public ObservableCollection<Author> Authors
+        {
+            get { return authors; }
+            set
+            {
+                if (authors != value)
+                {
+                    authors = value;
+                    OnPropertyChanged(nameof(Authors));
+                }
+            }
+        }
         
         private Author selectedAuthor;
         public Author SelectedAuthor
@@ -31,12 +46,9 @@ namespace KursProjectISP31.ViewModel
         public AuthorViewModel()
         {
             authorService = new AuthorService();
-            Load();
+            Authors = new ObservableCollection<Author>(authorService.GetAll());
         }
-        private void Load()
-        {
-           Authors = new ObservableCollection<Author>(authorService.GetAll());
-        }
+
         private RelayCommand? addCommand;
         public RelayCommand AddCommand
         {
@@ -49,7 +61,7 @@ namespace KursProjectISP31.ViewModel
                       if (window.ShowDialog() == true)
                       {
                           authorService.Add(window.Author);
-                          Authors.Add(window.Author);
+                          authors.Add(window.Author);
                       }
                   }));
             }
@@ -85,8 +97,28 @@ namespace KursProjectISP31.ViewModel
                       if (result == MessageBoxResult.Yes)
                       {
                           authorService.Delete(author);
-                          Authors.Remove(author);
+                          authors.Remove(author);
                       } 
+                  }));
+            }
+        }
+        private RelayCommand? searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return searchCommand ??
+                  (searchCommand = new RelayCommand((o) =>
+                  {
+                      string str = (o as TextBox)!.Text;
+                      if (str.Length == 0)
+                      {
+                          Authors = new ObservableCollection<Author>(authorService.GetAll());
+                      }
+                      else
+                      {
+                          Authors = new ObservableCollection<Author>(authorService.Search(str));
+                      }
                   }));
             }
         }

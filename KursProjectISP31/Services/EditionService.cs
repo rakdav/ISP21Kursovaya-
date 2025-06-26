@@ -34,6 +34,12 @@ namespace KursProjectISP31.Services
                 return db.Editions.ToList();
             }
         }
+
+        public override List<Edition> Search(string str)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Update(Edition obj)
         {
             using (KursovayaContext db = new KursovayaContext())

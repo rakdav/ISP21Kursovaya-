@@ -22,15 +22,16 @@
         </Grid.RowDefinitions>
         <TextBox Text="{Binding Surname}" Grid.Row="0"
                  Tag="Введите фамилию" Style="{StaticResource PlaceholderTextBoxStyle}"/>
-        <TextBox Text="{Binding FirstName}" Grid.Row="1"
+        <TextBox Text="{Binding FirstName}" Grid.Row="1" Tag="Введите имя"
                  Style="{StaticResource PlaceholderTextBoxStyle}"/>
-        <TextBox Text="{Binding LastName}" Grid.Row="2"
+        <TextBox Text="{Binding LastName}" Grid.Row="2" Tag="Введите отчество"
                  Style="{StaticResource PlaceholderTextBoxStyle}"/>
-        <TextBox Text="{Binding Address}" Grid.Row="3"
+        <TextBox Text="{Binding Address}" Grid.Row="3" Tag="Введите адрес"
                  Style="{StaticResource PlaceholderTextBoxStyle}"/>
-        <TextBox Text="{Binding Phone}" Grid.Row="4"
+        <TextBox Text="{Binding Phone}" Grid.Row="4" Tag="Введите телефон"
                  Style="{StaticResource PlaceholderTextBoxStyle}"/>
-        <TextBox Text="{Binding AdditionalInformation}" Grid.Row="5" 
+        <TextBox Text="{Binding AdditionalInformation}" Grid.Row="5"
+                 Tag="Введите дополнительную информацию"
                  Style="{StaticResource PlaceholderTextBoxStyle}"/>
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
@@ -38,10 +39,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Content="OK"
-                    Click="Button_Click" Style="{StaticResource DialogStyle}"/>
+                    Click="Button_Click" Margin="20 10"/>
             <Button Content="Cancel" Grid.Column="1"
-                    Style="{StaticResource DialogStyle}"
-                    Click="Button_Click_1"/>
+                    Click="Button_Click_1" Margin="20 10"/>
         </Grid>
         
     </Grid>

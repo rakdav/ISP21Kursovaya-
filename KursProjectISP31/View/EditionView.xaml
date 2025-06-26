@@ -33,23 +33,12 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1"
                          HorizontalAlignment="Right" 
                          VerticalAlignment="Center">
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                           Width="50" Height="50"
-                     Background="Transparent"
-                     IsChecked="True">
-                        <Grid>
-                            <Image Source="/Assets/table.png"
-                                 Style="{StaticResource Image_Style}" />
-                        </Grid>
-                    </Menu:Btn>
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                     Background="Transparent" Width="50" Height="50"
-                     IsChecked="False">
-                        <Grid>
-                            <Image Source="/Assets/block.png"
-                             Style="{StaticResource Image_Style}" />
-                        </Grid>
-                    </Menu:Btn>
+                    <Button Margin="5 0">
+                        <Image Source="/Assets/table.png"/>
+                     </Button>
+                    <Button Margin="5 0">
+                        <Image Source="/Assets/block.png" />
+                    </Button>
                 </StackPanel>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -70,7 +59,9 @@
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
                         <Image Source="/Assets/search.png" 
                             Style="{StaticResource Image_Style}"/>
-                        <TextBox Width="200"/>
+                        <TextBox Width="200" Height="25" x:Name="Search">
+                            
+                        </TextBox>
                     </StackPanel>
                     <Button Grid.Column="2" HorizontalAlignment="Right"
                          Background="Transparent" Command="{Binding AddCommand}"

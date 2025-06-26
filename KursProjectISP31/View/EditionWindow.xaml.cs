@@ -29,5 +29,15 @@ namespace KursProjectISP31.View
             DataContext = ThisEdition;
             AuthorsComboBox.ItemsSource = db.Authors.ToList();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursProjectISP31.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace KursProjectISP31.Services
         public abstract bool Add(T obj);
         public abstract bool Update(T obj);
         public abstract bool Delete(T obj);
+        public abstract List<T> Search(string str);
     }
 }
