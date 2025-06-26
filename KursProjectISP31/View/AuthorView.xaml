@@ -8,7 +8,7 @@
              xmlns:Menu="clr-namespace:KursProjectISP31.Utills"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="500" d:DesignWidth="900"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Style="{StaticResource Page_Style}">
     <UserControl.DataContext>

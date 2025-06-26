@@ -9,7 +9,7 @@
                                     Y="50" />
             </Setter.Value>
         </Setter>
-
+        <Setter Property="Background" Value="#FF585555"/>
         <Style.Triggers>
 
             <Trigger Property="Visibility"
