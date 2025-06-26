@@ -13,11 +13,32 @@ namespace KursProjectISP31.ViewModel
 {
     public class EditionViewModel: ViewModelBase
     {
-        public ObservableCollection<Edition> Editions { get; set; }
+        private ObservableCollection<Edition> editions;
+        public ObservableCollection<Edition> Editions
+        {
+            get { return editions; }
+            set
+            {
+                if (editions != value)
+                {
+                    editions = value;
+                    OnPropertyChanged(nameof(Editions));
+                }
+            }
+        }
         public List<Author> authorList;
         public AuthorService authorService;
         public EditionService editionService;
-
+        private string searchText;
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+            }
+        }
         public EditionViewModel()
         {
             authorService = new AuthorService();
@@ -39,6 +60,25 @@ namespace KursProjectISP31.ViewModel
                       {
                           editionService.Add(window.ThisEdition);
                           Editions.Add(window.ThisEdition);
+                      }
+                  }));
+            }
+        }
+        private RelayCommand? searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return searchCommand ??
+                  (searchCommand = new RelayCommand((o) =>
+                  {
+                      if (String.IsNullOrEmpty(SearchText))
+                      {
+                          Editions = new ObservableCollection<Edition>(editionService.GetAll());
+                      }
+                      else
+                      {
+                          Editions = new ObservableCollection<Edition>(editionService.Search(SearchText));
                       }
                   }));
             }

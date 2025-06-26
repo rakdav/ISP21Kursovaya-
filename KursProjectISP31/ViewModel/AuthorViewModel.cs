@@ -31,7 +31,17 @@ namespace KursProjectISP31.ViewModel
                 }
             }
         }
-        
+        private string searchText;
+        public string SearchText
+        {
+            get { return searchText; }
+            set
+            {
+                    searchText = value;
+                    OnPropertyChanged(nameof(SearchText));
+            }
+        }
+
         private Author selectedAuthor;
         public Author SelectedAuthor
         {
@@ -110,14 +120,13 @@ namespace KursProjectISP31.ViewModel
                 return searchCommand ??
                   (searchCommand = new RelayCommand((o) =>
                   {
-                      string str = (o as TextBox)!.Text;
-                      if (str.Length == 0)
+                      if (String.IsNullOrEmpty(SearchText))
                       {
                           Authors = new ObservableCollection<Author>(authorService.GetAll());
                       }
                       else
                       {
-                          Authors = new ObservableCollection<Author>(authorService.Search(str));
+                          Authors = new ObservableCollection<Author>(authorService.Search(SearchText));
                       }
                   }));
             }

@@ -49,7 +49,12 @@ namespace KursProjectISP31.Services
         {
             using (KursovayaContext db = new KursovayaContext())
             {
-               return db.Authors.Where(p => p.Surname!.StartsWith(str)).ToList();
+               return db.Authors.Where(p => p.Surname!.StartsWith(str)||
+               p.FirstName!.StartsWith(str)||
+               p.LastName!.StartsWith(str)||
+               p.Address!.StartsWith(str)||
+               p.Phone!.StartsWith(str)||
+               p.AdditionalInformation!.StartsWith(str)).ToList();
             }
         }
     }

@@ -57,10 +57,14 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
-                        <Image Source="/Assets/search.png" 
-                            Style="{StaticResource Image_Style}"/>
-                        <TextBox Width="200" Height="25" x:Name="Search">
-                            
+                        <Image Source="/Assets/search.png"/>
+                        <TextBox Width="200" Height="25" Text="{Binding SearchText,UpdateSourceTrigger=PropertyChanged}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction
+            Command="{Binding SearchCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                         </TextBox>
                     </StackPanel>
                     <Button Grid.Column="2" HorizontalAlignment="Right"
